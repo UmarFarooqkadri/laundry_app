@@ -2,9 +2,11 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Use environment variable if available, otherwise default to localhost
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
+// Expo uses EXPO_PUBLIC_ prefix, but also support REACT_APP_ for compatibility
+const API_URL = process.env.EXPO_PUBLIC_API_URL || process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
 
 console.log('=== API Configuration ===');
+console.log('EXPO_PUBLIC_API_URL from env:', process.env.EXPO_PUBLIC_API_URL);
 console.log('REACT_APP_API_URL from env:', process.env.REACT_APP_API_URL);
 console.log('API_URL being used:', API_URL);
 console.log('========================');
