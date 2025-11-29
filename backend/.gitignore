@@ -1,0 +1,5 @@
+node_modules/
+.env
+laundry.db
+*.log
+.DS_Store
