@@ -4,6 +4,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Use environment variable if available, otherwise default to localhost
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
 
+console.log('=== API Configuration ===');
+console.log('REACT_APP_API_URL from env:', process.env.REACT_APP_API_URL);
+console.log('API_URL being used:', API_URL);
+console.log('========================');
+
 const api = axios.create({
   baseURL: API_URL,
   headers: {
