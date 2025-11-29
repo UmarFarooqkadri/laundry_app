@@ -20,29 +20,35 @@ const RegisterScreen = ({ onRegisterSuccess, onSwitchToLogin }) => {
   const [loading, setLoading] = useState(false);
 
   const handleRegister = async () => {
+    console.log('Register button clicked');
+
     if (!username || !email || !password || !confirmPassword) {
-      Alert.alert('Error', 'Please fill in all fields');
+      alert('Please fill in all fields');
       return;
     }
 
     if (password !== confirmPassword) {
-      Alert.alert('Error', 'Passwords do not match');
+      alert('Passwords do not match');
       return;
     }
 
     if (password.length < 6) {
-      Alert.alert('Error', 'Password must be at least 6 characters');
+      alert('Password must be at least 6 characters');
       return;
     }
 
     setLoading(true);
+    console.log('Attempting registration...');
+
     try {
       const response = await authService.register(username, email, password);
-      Alert.alert('Success', 'Account created successfully!');
+      console.log('Registration successful:', response);
+      alert('Account created successfully!');
       onRegisterSuccess();
     } catch (error) {
+      console.error('Registration error:', error);
       const errorMessage = error.response?.data?.error || 'Registration failed';
-      Alert.alert('Error', errorMessage);
+      alert(errorMessage);
     } finally {
       setLoading(false);
     }

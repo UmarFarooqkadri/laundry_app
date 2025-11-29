@@ -19,18 +19,18 @@ const LoginScreen = ({ onLoginSuccess, onSwitchToRegister }) => {
 
   const handleLogin = async () => {
     if (!email || !password) {
-      Alert.alert('Error', 'Please fill in all fields');
+      alert('Please fill in all fields');
       return;
     }
 
     setLoading(true);
     try {
       const response = await authService.login(email, password);
-      Alert.alert('Success', response.message);
+      alert(response.message);
       onLoginSuccess();
     } catch (error) {
       const errorMessage = error.response?.data?.error || 'Login failed';
-      Alert.alert('Error', errorMessage);
+      alert(errorMessage);
     } finally {
       setLoading(false);
     }
